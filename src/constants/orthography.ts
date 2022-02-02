@@ -1,6 +1,6 @@
 import { CONFIG } from './config'
 
-export const ORTHOGRAPHY = ['e', "'", 'a', 'p', 's', 'k', 'm', 't', 'u', 'y', '-', 'w', 'n', 'l', 'c', 'o', 'q', 'h', 'i']
+export const ORTHOGRAPHY = ["'", '-', 'a', 'c', 'e', 'h', 'i', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 's', 't', 'u', 'w', 'y']
 
 if (CONFIG.normalization) {
   ORTHOGRAPHY.forEach(
