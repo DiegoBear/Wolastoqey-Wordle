@@ -1,5 +1,6 @@
 import { WORDS } from '../constants/wordlist'
 import { VALIDGUESSES } from '../constants/validGuesses'
+import {DEFS} from '.../constants/defsList'
 
 export const isWordInWordList = (word: string) => {
   return WORDS.includes(word) || VALIDGUESSES.includes(word)
@@ -21,7 +22,8 @@ export const getWordOfDay = () => {
     solution: WORDS[index % WORDS.length],
     solutionIndex: index,
     tomorrow: nextday,
+    solutionDefinition: DEFS[index % WORDS.length]
   }
 }
 
-export const { solution, solutionIndex, tomorrow } = getWordOfDay()
+export const { solution, solutionIndex, tomorrow, solutionDefinition } = getWordOfDay()

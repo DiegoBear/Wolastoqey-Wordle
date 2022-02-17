@@ -144,7 +144,7 @@ function App() {
           className="h-6 w-6 cursor-pointer"
           onClick={() => setIsStatsModalOpen(true)}
         />
-      </div>
+
       <Grid guesses={guesses} currentGuess={currentGuess} />
       <Keyboard
         onChar={onChar}
@@ -183,10 +183,10 @@ function App() {
 
       <Alert message="Not enough letters" isOpen={isNotEnoughLetters} />
       <Alert message="Word not found" isOpen={isWordNotFoundAlertOpen} />
-      <Alert message={`The word was ${solution}`} isOpen={isGameLost} />
+      <Alert message={`Good try.\nThe word was ${solution}.\nThis means ${solutionDefinition}`} isOpen={isGameLost} />
       <Alert
-        message={successAlert}
-        isOpen={successAlert !== ''}
+        message={'${successAlert}\nThe word was ${solution}.\nThis means ${solutionDefinition}'}
+        isOpen={isGameWon}
         variant="success"
       />
     </div>

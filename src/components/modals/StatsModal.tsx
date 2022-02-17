@@ -35,6 +35,7 @@ export const StatsModal = ({
   return (
     <BaseModal title="Statistics" isOpen={isOpen} handleClose={handleClose}>
       <StatBar gameStats={gameStats} />
+
       <h4 className="text-lg leading-6 font-medium text-gray-900">
         Guess Distribution
       </h4>
