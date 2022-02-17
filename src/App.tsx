@@ -144,6 +144,7 @@ function App() {
           className="h-6 w-6 cursor-pointer"
           onClick={() => setIsStatsModalOpen(true)}
         />
+      </div>
 
       <Grid guesses={guesses} currentGuess={currentGuess} />
       <Keyboard
