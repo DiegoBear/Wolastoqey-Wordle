@@ -1,6 +1,6 @@
 import { WORDS } from '../constants/wordlist'
 import { VALIDGUESSES } from '../constants/validGuesses'
-import { DEFS } from '../constants/defslist'
+import { DEFS } from '../constants/defsList'
 
 export const isWordInWordList = (word: string) => {
   return WORDS.includes(word) || VALIDGUESSES.includes(word)
