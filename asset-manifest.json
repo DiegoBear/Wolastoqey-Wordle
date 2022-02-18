@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/Wolastoqey-Wordle/static/css/main.5783c749.css",
-    "main.js": "/Wolastoqey-Wordle/static/js/main.0379cbe8.js",
+    "main.css": "/Wolastoqey-Wordle/static/css/main.cea5db48.css",
+    "main.js": "/Wolastoqey-Wordle/static/js/main.c206616c.js",
     "static/js/787.3500bfec.chunk.js": "/Wolastoqey-Wordle/static/js/787.3500bfec.chunk.js",
     "static/media/BCSans-Bold.woff": "/Wolastoqey-Wordle/static/media/BCSans-Bold.252ecf87ea37c93b293c.woff",
     "static/media/BCSans-BoldItalic.woff": "/Wolastoqey-Wordle/static/media/BCSans-BoldItalic.73ed5137b2c4a42b754f.woff",
     "static/media/BCSans-Italic.woff": "/Wolastoqey-Wordle/static/media/BCSans-Italic.9c3be03a06d30a6ecff0.woff",
     "static/media/BCSans-Regular.woff": "/Wolastoqey-Wordle/static/media/BCSans-Regular.0079ea8e42d4e81a13d2.woff",
     "index.html": "/Wolastoqey-Wordle/index.html",
-    "main.5783c749.css.map": "/Wolastoqey-Wordle/static/css/main.5783c749.css.map",
-    "main.0379cbe8.js.map": "/Wolastoqey-Wordle/static/js/main.0379cbe8.js.map",
+    "main.cea5db48.css.map": "/Wolastoqey-Wordle/static/css/main.cea5db48.css.map",
+    "main.c206616c.js.map": "/Wolastoqey-Wordle/static/js/main.c206616c.js.map",
     "787.3500bfec.chunk.js.map": "/Wolastoqey-Wordle/static/js/787.3500bfec.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5783c749.css",
-    "static/js/main.0379cbe8.js"
+    "static/css/main.cea5db48.css",
+    "static/js/main.c206616c.js"
   ]
 }
