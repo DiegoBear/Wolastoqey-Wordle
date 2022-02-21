@@ -5,7 +5,7 @@ import classNames from 'classnames'
 type Props = {
   isOpen: boolean
   message: string
-  variant?: 'success' | 'warning'
+  variant?: 'success' | 'warning' | 'last'
 }
 
 export const Alert = ({ isOpen, message, variant = 'warning' }: Props) => {
@@ -13,7 +13,8 @@ export const Alert = ({ isOpen, message, variant = 'warning' }: Props) => {
     'fixed top-20 left-1/2 transform -translate-x-1/2 max-w-sm w-full shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden',
     {
       'bg-rose-200': variant === 'warning',
-      'bg-green-200': variant === 'success',
+       'bg-green-200': variant === 'success',
+       'bg-yellow-200': variant === 'last',
     }
   )
 

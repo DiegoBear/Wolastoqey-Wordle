@@ -7,6 +7,7 @@ import { Keyboard } from './components/keyboard/Keyboard'
 import { AboutModal } from './components/modals/AboutModal'
 import { InfoModal } from './components/modals/InfoModal'
 import { StatsModal } from './components/modals/StatsModal'
+import { ExtraModal } from './components/modals/ExtraModal'
 import { WIN_MESSAGES } from './constants/strings'
 
 
@@ -30,7 +31,11 @@ function App() {
   const [isNotEnoughLetters, setIsNotEnoughLetters] = useState(false)
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
   const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false)
-  const [isGameLost, setIsGameLost] = useState(false)
+    const [isGameLost, setIsGameLost] = useState(false)
+
+  const [usedLastChance, setLastChance] = useState(false)
+    const [isExtraModalOpen, setIsExtraModalOpen] = useState(false)
+
   const [successAlert, setSuccessAlert] = useState('')
   const [guesses, setGuesses] = useState<string[][]>(() => {
     const loaded = loadGameStateFromLocalStorage()
@@ -125,10 +130,14 @@ function App() {
         return setIsGameWon(true)
       }
 
-      if (guesses.length === CONFIG.tries - 1) {
-        setStats(addStatsForCompletedGame(stats, guesses.length + 1))
-        setIsGameLost(true)
-      }
+        if (guesses.length === CONFIG.tries - 1 && !usedLastChance) {
+            setIsExtraModalOpen(true)
+        }
+        else if (guesses.length === CONFIG.tries - 1) {
+            setStats(addStatsForCompletedGame(stats, guesses.length + 1))
+            setIsGameLost(true)
+        }
+
     }
   }
     //Not Wordle - {CONFIG.language}
@@ -159,7 +168,12 @@ function App() {
       <InfoModal
         isOpen={isInfoModalOpen}
         handleClose={() => setIsInfoModalOpen(false)}
-      />
+          />
+          <ExtraModal
+              isOpen={isExtraModalOpen}
+              handleClose={() => { setIsExtraModalOpen(false); setLastChance(true);}}
+              setOption={() => { guesses.pop(); setIsExtraModalOpen(false); setLastChance(true); }}
+        />
       <StatsModal
         isOpen={isStatsModalOpen}
         handleClose={() => setIsStatsModalOpen(false)}
@@ -196,9 +210,18 @@ function App() {
             This means: ${solutionDefinition}`}
         isOpen={isGameWon}
         variant="success"
-      />
-    </div>
+          />
+        <Alert message={
+              `Hint: Today's word means \"${solutionDefinition}\"`}
+              isOpen={!isGameLost && !isGameWon && usedLastChance}
+              variant="last"
+          />
+          
+      </div>
+
   )
 }
+
+
 
 export default App
