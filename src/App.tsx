@@ -8,6 +8,8 @@ import { AboutModal } from './components/modals/AboutModal'
 import { InfoModal } from './components/modals/InfoModal'
 import { StatsModal } from './components/modals/StatsModal'
 import { WIN_MESSAGES } from './constants/strings'
+
+
 import { isWordInWordList, isWinningWord, solution, solutionDefinition } from './lib/words'
 import { addStatsForCompletedGame, loadStats } from './lib/stats'
 import {
@@ -129,12 +131,13 @@ function App() {
       }
     }
   }
-
+    //Not Wordle - {CONFIG.language}
   return (
     <div className="py-8 max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div className="flex w-80 mx-auto items-center mb-8">
-        <h1 className="text-xl grow font-bold">
-          Not Wordle - {CONFIG.language}
+        <div className="w-4" > </div>
+        <h1 className="text-xl centered grow font-bold">
+          {CONFIG.language} Wordle
         </h1>
         <InformationCircleIcon
           className="h-6 w-6 cursor-pointer"
@@ -144,6 +147,7 @@ function App() {
           className="h-6 w-6 cursor-pointer"
           onClick={() => setIsStatsModalOpen(true)}
         />
+        <img src={require("./wlccIcon.png")} alt="WLCC" className="h-6 w-6 cursor-pointer" onClick={() => window.open("https://www.maliseet.org/", "_blank")}/>
       </div>
       <Grid guesses={guesses} currentGuess={currentGuess} />
       <Keyboard
@@ -190,7 +194,6 @@ function App() {
       <Alert
         message={`Kwoli Kiseht!\nThe word was ${solution}.\n
             This means: ${solutionDefinition}`}
-        //message={"Kwoli Kiseht! The word was " + solution + ". \r\nThis means: " + solutionDefinition}
         isOpen={isGameWon}
         variant="success"
       />
