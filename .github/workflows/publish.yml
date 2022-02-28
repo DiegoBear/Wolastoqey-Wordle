@@ -10,9 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Audit
-        run: |
-          CI='' npm audit fix
       - name: Install
         run: |
           npm install
