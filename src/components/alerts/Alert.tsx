@@ -3,18 +3,21 @@ import { Transition } from '@headlessui/react'
 import classNames from 'classnames'
 
 type Props = {
-  isOpen: boolean
-  message: string
-  variant?: 'success' | 'warning' | 'last'
+    isOpen: boolean
+    handleClose?: () => void
+    message: string
+    variant?: 'success' | 'warning' | 'last' | 'spell'
 }
 
-export const Alert = ({ isOpen, message, variant = 'warning' }: Props) => {
+export const Alert = ({ isOpen, message, handleClose = (() => {}), variant = 'warning' }: Props) => {
   const classes = classNames(
     'fixed top-20 left-1/2 transform -translate-x-1/2 max-w-sm w-full shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden',
-    {
+      {
+      'bg-yellow-200': variant === 'last',
       'bg-rose-200': variant === 'warning',
-       'bg-green-200': variant === 'success',
-       'bg-yellow-200': variant === 'last',
+      'bg-yellow-200 z-20': variant === 'spell',
+      'bg-green-200': variant === 'success',
+
     }
   )
 
@@ -34,8 +37,14 @@ export const Alert = ({ isOpen, message, variant = 'warning' }: Props) => {
           <p className="text-sm text-center font-medium text-gray-900">
             {message.split("\n").map(line => (<p>{line}</p>))}
           </p>
-        </div>
-      </div>
+              </div>
+              {(false) &&
+                  <div className="text-center">
+                      <button> TEST </button> <button> TEST </button>
+                  </div>
+              }
+          </div>
+  
     </Transition>
   )
 }

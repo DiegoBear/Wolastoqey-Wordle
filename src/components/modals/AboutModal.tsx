@@ -11,7 +11,7 @@ export const AboutModal = ({ isOpen, handleClose }: Props) => {
       <BaseModal title="" isOpen={isOpen} handleClose={handleClose}>
           <h1 className="text-xl font-bold"> Wolastoqey Wordle is brought  </h1>
           <h1 className="text-xl font-bold"> to you by </h1>
-       <img src={require("./wlccLogo.png")} style={{ justifyContent: 'center', marginLeft: 'auto', marginRight:'auto', marginTop: '0.3cm', marginBottom:'0.3cm'}} />
+          <img className="w-60" src={require("./wlccLogo.png")} style={{ justifyContent: 'center', marginLeft: 'auto', marginRight: 'auto', marginTop: '0.3cm', marginBottom: '0.3cm' }} />
 
        <p className="text-sm text-black font-bold" >
               Coming 2023: WLCC Language Nest
@@ -19,17 +19,17 @@ export const AboutModal = ({ isOpen, handleClose }: Props) => {
 
           <p className="text-sm text-black" style={{ marginTop: '0.3cm', marginBottom: '0.3cm' }} >
             <ul>
-                <li>{'\u2022'}Wolas-Talk language app</li>
-                <li>{'\u2022'}Teacher classroom resources</li>
-                <li>{'\u2022'}Home learning kits</li>
-                <li>{'\u2022'}Elder stories</li>
+                <li>{'\u2022'} Wolas-Talk language app</li>
+                <li>{'\u2022'} Teacher classroom resources</li>
+                <li>{'\u2022'} Home learning kits</li>
+                <li>{'\u2022'} Elder stories</li>
             </ul>
         </p>
 
 
           <p className="text-sm text-black font-bold" >
               Visit {' '}
-              <a href={"https://www.maliseet.org/"} className="underline">
+              <a href={"https://www.maliseet.org/"} className="underline" target="_blank">
                   www.maliseet.org
               </a>{' '}
               for more details

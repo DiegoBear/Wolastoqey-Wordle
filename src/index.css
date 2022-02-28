@@ -1,8 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*'Arial Rounded MT', */
 div {
-  font-family: 'BCSans', 'Noto Sans', sans-serif;
+    font-family: 'BCSans', 'Noto Sans', sans-serif;
 }
 
 .cell-animation {

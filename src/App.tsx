@@ -11,7 +11,7 @@ import { ExtraModal } from './components/modals/ExtraModal'
 import { WIN_MESSAGES } from './constants/strings'
 
 
-import { isWordInWordList, isWinningWord, solution, solutionDefinition } from './lib/words'
+import { isWordInWordList, isWinningWord, solution, solutionDefinition, getClosestWord } from './lib/words'
 import { addStatsForCompletedGame, loadStats } from './lib/stats'
 import {
   loadGameStateFromLocalStorage,
@@ -21,10 +21,11 @@ import {
 import { CONFIG } from './constants/config'
 import ReactGA from 'react-ga'
 import '@bcgov/bc-sans/css/BCSans.css'
-const ALERT_TIME_MS = 2000
+const ALERT_TIME_MS = 3000
 
 function App() {
   const [currentGuess, setCurrentGuess] = useState<Array<string>>([])
+  const [badSpell, setBadSpell] = useState<string>("")
   const [isGameWon, setIsGameWon] = useState(false)
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false)
@@ -109,7 +110,8 @@ function App() {
       }, ALERT_TIME_MS)
     }
 
-    if (!isWordInWordList(currentGuess.join(''))) {
+      if (!isWordInWordList(currentGuess.join(''))) {
+          setBadSpell(getClosestWord(currentGuess.join('')))
       setIsWordNotFoundAlertOpen(true)
       return setTimeout(() => {
         setIsWordNotFoundAlertOpen(false)
@@ -144,19 +146,21 @@ function App() {
   return (
     <div className="py-8 max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div className="flex w-80 mx-auto items-center mb-8">
-        <div className="w-4" > </div>
+        <div className="w-0" > </div>
         <h1 className="text-xl centered grow font-bold">
-          {CONFIG.language} Wordle
+          {CONFIG.language} Wakon
         </h1>
         <InformationCircleIcon
-          className="h-6 w-6 cursor-pointer"
+            className="h-6 w-6 cursor-pointer "
+                  style={{  marginLeft: '2pt', marginRight: '1pt'}}
           onClick={() => setIsInfoModalOpen(true)}
         />
         <ChartBarIcon
-          className="h-6 w-6 cursor-pointer"
+            className="h-6 w-6 cursor-pointer"
+            style={{ marginLeft: '2pt', marginRight: '2pt' }}
           onClick={() => setIsStatsModalOpen(true)}
         />
-        <img src={require("./wlccIcon.png")} alt="WLCC" className="h-6 w-6 cursor-pointer" onClick={() => window.open("https://www.maliseet.org/", "_blank")}/>
+        <img src={require("./wlccIcon.png")} alt="WLCC" style={{ marginLeft: '2pt', marginRight: '0pt' }} className="h-6 w-6 cursor-pointer" onClick={() => window.open("https://www.maliseet.org/", "_blank")}/>
       </div>
       <Grid guesses={guesses} currentGuess={currentGuess} />
       <Keyboard
@@ -171,7 +175,7 @@ function App() {
           />
           <ExtraModal
               isOpen={isExtraModalOpen}
-              handleClose={() => { setIsExtraModalOpen(false); setLastChance(true);}}
+              handleClose={() => { setIsExtraModalOpen(false); setLastChance(true); setIsGameLost(true);}}
               setOption={() => { guesses.pop(); setIsExtraModalOpen(false); setLastChance(true); }}
         />
       <StatsModal
@@ -199,9 +203,10 @@ function App() {
         About this game
       </button>
 
-      <Alert message="Not enough letters" isOpen={isNotEnoughLetters} />
-      <Alert message="Word not found" isOpen={isWordNotFoundAlertOpen} />
-          <Alert message={
+    
+    <Alert message="Not enough letters" isOpen={isNotEnoughLetters} variant="spell" />
+          <Alert message={`Close Guess...\nDid you mean ${badSpell}?`} isOpen={isWordNotFoundAlertOpen} variant="spell"/>
+      <Alert message={
                 `The word was ${solution}.
                 This means \"${solutionDefinition}\"`}
               isOpen={isGameLost} />
