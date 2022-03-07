@@ -59,7 +59,7 @@ export const BaseModal = ({ title, children, isOpen, handleClose }: Props) => {
                 <div className="text-center">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg leading-6 font-medium text-gray-900"
+                    className="text-lg leading-6 font-medium text-gray-900 font-bold"
                   >
                     {title}
                   </Dialog.Title>

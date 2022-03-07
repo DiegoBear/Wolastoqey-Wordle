@@ -24,17 +24,29 @@ export const getWordOfDay = () => {
     solutionIndex: index,
     tomorrow: nextday,
     solutionDefinition: DEFS[index % WORDS.length],
+    wordLength: WORDS[index % WORDS.length].length,
   }
 }
 
 export const getClosestWord = (word: string) => {
-    var sortedWords =  WORDS.sort((n1, n2) => {
-        return levenshtein(word, n1) - levenshtein(word, n2)
+
+
+    var sortedWords = WORDS.sort((n1, n2) => {
+
+        if (n1.length != wordLength) {
+            return 999
+        }
+        else if (n2.length != wordLength) {
+            return -999
+        }
+
+        return levenshtein(word, n1) - levenshtein(word, n2);
+    
     })
     return sortedWords[0]
 }
 
-export const { solution, solutionIndex, tomorrow, solutionDefinition} = getWordOfDay()
+export const { solution, solutionIndex, tomorrow, solutionDefinition, wordLength } = getWordOfDay()
 
 function levenshtein(a: string, b: string) {
     if (a.length == 0) return b.length;

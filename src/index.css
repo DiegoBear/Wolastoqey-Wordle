@@ -4,8 +4,17 @@
 
 /*'Arial Rounded MT', */
 div {
-    font-family: 'BCSans', 'Noto Sans', sans-serif;
+    font-family: 'Helvetica Neue', 'BCSans', 'Noto Sans', sans-serif;
 }
+
+h1,
+h3,
+button,
+p1,
+div.font-bold {
+    font-family: 'Arial Rounded MT', 'Helvetica Neue', 'BCSans', sans-serif;
+}
+
 
 .cell-animation {
   animation: revealCharCell linear;

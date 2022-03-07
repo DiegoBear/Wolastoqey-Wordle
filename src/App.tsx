@@ -11,7 +11,7 @@ import { ExtraModal } from './components/modals/ExtraModal'
 import { WIN_MESSAGES } from './constants/strings'
 
 
-import { isWordInWordList, isWinningWord, solution, solutionDefinition, getClosestWord } from './lib/words'
+import { isWordInWordList, isWinningWord, solution, solutionDefinition, getClosestWord, wordLength } from './lib/words'
 import { addStatsForCompletedGame, loadStats } from './lib/stats'
 import {
   loadGameStateFromLocalStorage,
@@ -86,7 +86,8 @@ function App() {
 
   const onChar = (value: string) => {
     if (
-      currentGuess.length < CONFIG.wordLength &&
+      //currentGuess.length < CONFIG.wordLength &&
+        currentGuess.length < wordLength &&
       guesses.length < CONFIG.tries &&
       !isGameWon
     ) {
@@ -103,7 +104,7 @@ function App() {
     if (isGameWon || isGameLost) {
       return
     }
-    if (!(currentGuess.length === CONFIG.wordLength)) {
+    if (!(currentGuess.length === wordLength)) {
       setIsNotEnoughLetters(true)
       return setTimeout(() => {
         setIsNotEnoughLetters(false)
@@ -120,7 +121,7 @@ function App() {
     const winningWord = isWinningWord(currentGuess.join(''))
 
     if (
-      currentGuess.length === CONFIG.wordLength &&
+      currentGuess.length === wordLength &&
       guesses.length < CONFIG.tries &&
       !isGameWon
     ) {
