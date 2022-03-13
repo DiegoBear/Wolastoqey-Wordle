@@ -11,7 +11,7 @@ import { ExtraModal } from './components/modals/ExtraModal'
 import { WIN_MESSAGES } from './constants/strings'
 
 
-import { isWordInWordList, isWinningWord, solution, solutionDefinition, getClosestWord, wordLength } from './lib/words'
+import { isWordInWordList, isWinningWord, solution, solutionDefinition, getClosestWord, getWordDef, wordLength } from './lib/words'
 import { addStatsForCompletedGame, loadStats } from './lib/stats'
 import {
   loadGameStateFromLocalStorage,
@@ -24,8 +24,12 @@ import '@bcgov/bc-sans/css/BCSans.css'
 const ALERT_TIME_MS = 3000
 
 function App() {
-  const [currentGuess, setCurrentGuess] = useState<Array<string>>([])
-  const [badSpell, setBadSpell] = useState<string>("")
+    const [currentGuess, setCurrentGuess] = useState<Array<string>>([])
+
+    const [badSpell, setBadSpell] = useState<string>("")
+    const [badSpellDef, setBadSpellDef] = useState<string>("")
+
+
   const [isGameWon, setIsGameWon] = useState(false)
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false)
@@ -112,7 +116,9 @@ function App() {
     }
 
       if (!isWordInWordList(currentGuess.join(''))) {
-          setBadSpell(getClosestWord(currentGuess.join('')))
+          var badString = getClosestWord(currentGuess.join(''))
+          setBadSpell(badString)
+          setBadSpellDef(getWordDef(badString))
       setIsWordNotFoundAlertOpen(true)
       return setTimeout(() => {
         setIsWordNotFoundAlertOpen(false)
@@ -206,7 +212,7 @@ function App() {
 
     
     <Alert message="Not enough letters" isOpen={isNotEnoughLetters} variant="spell" />
-          <Alert message={`Close Guess...\nDid you mean ${badSpell}?`} isOpen={isWordNotFoundAlertOpen} variant="spell"/>
+    <Alert message={`Close Guess...\nDid you mean ${badSpell}?\nThis means: \"${badSpellDef}\"`} isOpen={isWordNotFoundAlertOpen} variant="spell"/>
       <Alert message={
                 `The word was ${solution}.
                 This means \"${solutionDefinition}\"`}

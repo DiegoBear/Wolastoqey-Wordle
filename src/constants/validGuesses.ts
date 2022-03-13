@@ -687,7 +687,6 @@ export const VALIDGUESSES = [
 "kolocu",
 "ceykop",
  "pskihq",
-
     "aciye",
     "acomu",
     "ahahs",
@@ -1029,7 +1028,6 @@ export const VALIDGUESSES = [
     "wotop",
     "wotoq",
     "wotta",
-
 ]
 
 if (CONFIG.normalization) {

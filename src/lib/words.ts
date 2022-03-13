@@ -23,7 +23,7 @@ export const getWordOfDay = () => {
     solution: WORDS[index % WORDS.length],
     solutionIndex: index,
     tomorrow: nextday,
-    solutionDefinition: DEFS[index % WORDS.length],
+    solutionDefinition: DEFS[WORDS[index % WORDS.length]],
     wordLength: WORDS[index % WORDS.length].length,
   }
 }
@@ -45,6 +45,13 @@ export const getClosestWord = (word: string) => {
     })
     return sortedWords[0]
 }
+
+
+export const getWordDef = (word: string) => {
+    return DEFS[word];
+}
+
+
 
 export const { solution, solutionIndex, tomorrow, solutionDefinition, wordLength } = getWordOfDay()
 
